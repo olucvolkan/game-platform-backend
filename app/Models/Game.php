@@ -18,6 +18,7 @@ class Game extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'igdb_id',
         'slug',
         'title',
         'image',
