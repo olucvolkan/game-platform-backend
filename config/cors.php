@@ -19,12 +19,20 @@ return [
 
     'allowed_methods' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
 
-    'allowed_origins' => [
+    'allowed_origins' => array_filter([
         'http://localhost:3000',
         'http://127.0.0.1:3000',
-    ],
+        env('FRONTEND_URL'),
+    ]),
 
-    'allowed_origins_patterns' => [],
+    'allowed_origins_patterns' => [
+        // Allow all Laravel Cloud subdomains
+        '#^https://.*\.laravel\.cloud$#',
+        // Allow Vercel preview deployments
+        '#^https://.*\.vercel\.app$#',
+        // Allow Netlify preview deployments
+        '#^https://.*\.netlify\.app$#',
+    ],
 
     'allowed_headers' => ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
 
