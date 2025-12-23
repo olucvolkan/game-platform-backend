@@ -28,6 +28,8 @@ return [
     'allowed_origins_patterns' => [
         // Allow all Laravel Cloud subdomains
         '#^https://.*\.laravel\.cloud$#',
+        // Allow all Railway app subdomains
+        '#^https://.*\.up\.railway\.app$#',
         // Allow Vercel preview deployments
         '#^https://.*\.vercel\.app$#',
         // Allow Netlify preview deployments
