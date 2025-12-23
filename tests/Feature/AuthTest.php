@@ -109,9 +109,9 @@ class AuthTest extends TestCase
             'password' => 'wrongpassword',
         ]);
 
-        $response->assertStatus(401)
+        $response->assertStatus(422)
             ->assertJson([
-                'message' => 'Invalid credentials',
+                'message' => 'The provided credentials are incorrect.',
             ]);
     }
 
@@ -122,9 +122,9 @@ class AuthTest extends TestCase
             'password' => 'password123',
         ]);
 
-        $response->assertStatus(401)
+        $response->assertStatus(422)
             ->assertJson([
-                'message' => 'Invalid credentials',
+                'message' => 'The provided credentials are incorrect.',
             ]);
     }
 
@@ -146,7 +146,7 @@ class AuthTest extends TestCase
 
         $response->assertStatus(200)
             ->assertJson([
-                'message' => 'Logged out successfully',
+                'message' => 'Successfully logged out',
             ]);
     }
 
@@ -169,8 +169,8 @@ class AuthTest extends TestCase
             ->getJson('/api/user');
 
         $response->assertStatus(200)
-            ->assertJsonPath('name', 'John Doe')
-            ->assertJsonPath('email', 'john@example.com');
+            ->assertJsonPath('user.name', 'John Doe')
+            ->assertJsonPath('user.email', 'john@example.com');
     }
 
     public function test_unauthenticated_user_cannot_get_user_data(): void

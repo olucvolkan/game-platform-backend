@@ -50,7 +50,8 @@ class GameDetailTest extends TestCase
 
         $response->assertStatus(404)
             ->assertJson([
-                'message' => 'Game not found',
+                'error' => 'Game not found',
+                'statusCode' => 404,
             ]);
     }
 

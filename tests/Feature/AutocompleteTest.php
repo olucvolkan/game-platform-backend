@@ -34,8 +34,11 @@ class AutocompleteTest extends TestCase
     {
         $response = $this->getJson('/api/autocomplete');
 
-        $response->assertStatus(422)
-            ->assertJsonValidationErrors(['q']);
+        $response->assertStatus(400)
+            ->assertJson([
+                'error' => 'Invalid request parameters',
+                'statusCode' => 400,
+            ]);
     }
 
     public function test_autocomplete_respects_limit_parameter(): void
